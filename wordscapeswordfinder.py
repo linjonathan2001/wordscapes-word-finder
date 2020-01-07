@@ -60,7 +60,7 @@ finalwords = list(set(finalwords)) # check for duplicates
 finalwords.sort()
 finalwords.sort(key = len, reverse = True)
 words3 = []
-for word in finalwords:
+for word in reversed(finalwords):
     if len(word) == 3:
         finalwords.remove(word)
         words3.append(word)
