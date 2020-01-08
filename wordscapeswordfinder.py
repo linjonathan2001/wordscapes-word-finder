@@ -35,6 +35,7 @@ wordList = []
 #     fout.close()
 # eraseSmallWords()
 
+print "Calculating..."
 with open("wordscapeswords.txt", "r") as wordfile:
     for line in wordfile:
         for word in line.split():
@@ -46,7 +47,6 @@ def powerset(iterable):
     return chain.from_iterable(permutations(s, r) for r in range(len(s)+1))
 
 letterList = list(map(''.join, powerset(letters)))
-print "Calculating..."
 
 finalwords = []
 for word in letterList:
@@ -68,4 +68,4 @@ for word in reversed(finalwords):
 print "4+ letter words: "
 print finalwords
 print "3 letter words: "
-print words3
+print list(reversed(words3))
