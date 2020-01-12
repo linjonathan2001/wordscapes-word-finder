@@ -2,7 +2,7 @@ from itertools import chain, permutations
 
 def findWord(words, left, right, query):
     if right >= left:
-        mid = (left + right)/2
+        mid = int((left + right)/2)
         if words[mid] == query:
             return mid
         elif words[mid] > query:
@@ -12,11 +12,11 @@ def findWord(words, left, right, query):
     else:
         return -1
 
-print "Welcome to Wordscapes Word Finder"
+print ("Welcome to Wordscapes Word Finder")
 while True:
-    letters = raw_input("Enter letters: ")
+    letters = input("Enter letters: ")
     if len(letters) < 3:
-        print "Please enter at least 3 letters"
+        print ("Please enter at least 3 letters")
     else:
         break
 wordList = []
@@ -35,7 +35,7 @@ wordList = []
 #     fout.close()
 # eraseSmallWords()
 
-print "Calculating..."
+print ("Calculating...")
 with open("wordscapeswords.txt", "r") as wordfile:
     for line in wordfile:
         for word in line.split():
@@ -65,7 +65,7 @@ for word in reversed(finalwords):
         finalwords.remove(word)
         words3.append(word)
 
-print "4+ letter words: "
-print finalwords
-print "3 letter words: "
-print list(reversed(words3))
+print ("4+ letter words: ")
+print (finalwords)
+print ("3 letter words: ")
+print (list(reversed(words3)))
