@@ -4,7 +4,7 @@ fin = open(infile)
 fout = open(outfile, "w+")
 to_remove = []
 while True:
-    query = str(raw_input("Type a word to remove (enter q to exit): "))
+    query = str(raw_input("Type a word to remove (enter q to finish): "))
     if query == "q":
         break
     else:
@@ -23,3 +23,8 @@ for line in word_list:
     fout.write(line)
 fin.close()
 fout.close()
+
+import os
+os.remove("wordscapeswords.txt")
+print("wordscapeswords.txt removed")
+os.rename("wordscapeswordsEdited.txt", "wordscapeswords.txt")
