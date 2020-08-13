@@ -1,4 +1,4 @@
-# wordscapeswordfinder
+# wordscapes-word-finder
 Wordscapes Word Finding Algorithm with modifiable valid word list
 This program takes in letters and finds all valid words in Wordscapes.
 
