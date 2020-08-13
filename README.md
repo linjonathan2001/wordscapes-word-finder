@@ -1,9 +1,9 @@
-## wordscapes-word-finder
+# wordscapes-word-finder
 Wordscapes Word Finding Algorithm with modifiable valid word list. 
 
 This program takes in letters and finds all valid words in Wordscapes.
 
-# Running
+## Running
 Start the run.py script to start up the GUI:
 ```
 python3 run.py
