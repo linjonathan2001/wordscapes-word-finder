@@ -62,7 +62,7 @@ def find(l, lb, lb2, event = None):
         lb2.insert(j, word)
         j += 1
 
-def assignDelete(event, word):
+def assignDelete(event, word, mylist):
     word = mylist.get(mylist.curselection())
     print(word.upper())
 
@@ -71,7 +71,7 @@ def delete(lb):
     outfile = "wordsEdited.txt"
     fin = open(infile)
     fout = open(outfile, "w+")
-    query = mylist.get(mylist.curselection())
+    query = lb.get(lb.curselection())
 
     word_list = []
     for line in fin:
@@ -89,7 +89,7 @@ def delete(lb):
     import os
     os.remove("words.txt")
     os.rename("wordsEdited.txt", "words.txt")
-    lb.delete(mylist.curselection())
+    lb.delete(lb.curselection())
 
 def setup_gui():
     # GUI
@@ -136,7 +136,7 @@ def setup_gui():
     window.bind('<Return>', lambda event = None: findWords.invoke())
 
     dWord = StringVar
-    mylist.bind('<<ListboxSelect>>', lambda event = None: assignDelete(event, dWord))
+    mylist.bind('<<ListboxSelect>>', lambda event = None: assignDelete(event, dWord, mylist))
     deleteWord = Button(window, text = 'Remove Selected Word', command = lambda: delete(mylist))
     deleteWord.pack(side = BOTTOM)
     window.bind('<BackSpace>', lambda event = None: deleteWord.invoke())
