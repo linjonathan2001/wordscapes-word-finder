@@ -1,5 +1,8 @@
 from tkinter import *
 
+def main():
+  setup_gui()
+
 def find(l, lb, lb2, event = None):
     lb.delete(0, "end")
     lb2.delete(0, "end")
@@ -8,7 +11,7 @@ def find(l, lb, lb2, event = None):
     maxLength = len(letters)
     wordList = []
 
-    with open("wordscapeswords.txt", "r") as wordfile:
+    with open("words.txt", "r") as wordfile:
         for line in wordfile:
             for word in line.split():
                 wordList.append(word)
@@ -62,12 +65,10 @@ def find(l, lb, lb2, event = None):
 def assignDelete(event, word):
     word = mylist.get(mylist.curselection())
     print(word.upper())
-# def assignDelete2(event, word):
-#     word = mylist.get(mylist2.curselection())
 
 def delete(lb):
-    infile = "wordscapeswords.txt"
-    outfile = "wordscapeswordsEdited.txt"
+    infile = "words.txt"
+    outfile = "wordsEdited.txt"
     fin = open(infile)
     fout = open(outfile, "w+")
     query = mylist.get(mylist.curselection())
@@ -86,58 +87,61 @@ def delete(lb):
     fout.close()
 
     import os
-    os.remove("wordscapeswords.txt")
-    os.rename("wordscapeswordsEdited.txt", "wordscapeswords.txt")
+    os.remove("words.txt")
+    os.rename("wordsEdited.txt", "words.txt")
     lb.delete(mylist.curselection())
 
-# GUI
-window = Tk()
-window.title('Wordscapes Word Finder')
-entryLabel = Label(window, text = 'Letters: ')
-entryLabel.pack()
+def setup_gui():
+    # GUI
+    window = Tk()
+    window.title('Wordscapes Word Finder')
+    entryLabel = Label(window, text = 'Letters: ')
+    entryLabel.pack()
 
-# entry box
-entry = Entry(window)
-entry.pack()
+    # entry box
+    entry = Entry(window)
+    entry.pack()
 
-# 3 letter words
-frame2 = Frame(window)
-frame2.pack(side = BOTTOM)
-scrollbar2 = Scrollbar(frame2)
-scrollbar2.pack(side = RIGHT, fill = Y)
-mylist2 = Listbox(frame2, width = 50, height = 10, yscrollcommand = scrollbar2.set )
-scrollbar2.configure(command = mylist2.yview)
-mylist2.pack(fill = BOTH, side = BOTTOM)
+    # 3 letter words
+    frame2 = Frame(window)
+    frame2.pack(side = BOTTOM)
+    scrollbar2 = Scrollbar(frame2)
+    scrollbar2.pack(side = RIGHT, fill = Y)
+    mylist2 = Listbox(frame2, width = 50, height = 10, yscrollcommand = scrollbar2.set )
+    scrollbar2.configure(command = mylist2.yview)
+    mylist2.pack(fill = BOTH, side = BOTTOM)
 
-frame3 = Frame(window)
-frame3.pack(side = BOTTOM)
-label2 = Label(frame3, text = '3 letter words: ')
-label2.pack(side = LEFT)
+    frame3 = Frame(window)
+    frame3.pack(side = BOTTOM)
+    label2 = Label(frame3, text = '3 letter words: ')
+    label2.pack(side = LEFT)
 
-# 4 letter words
-frame = Frame(window)
-frame.pack(side = BOTTOM)
-scrollbar = Scrollbar(frame)
-scrollbar.pack(side = RIGHT, fill = Y)
-mylist = Listbox(frame, width = 50, height = 15, yscrollcommand = scrollbar.set )
-scrollbar.configure(command = mylist.yview)
-mylist.pack(fill = BOTH, side = BOTTOM)
+    # 4 letter words
+    frame = Frame(window)
+    frame.pack(side = BOTTOM)
+    scrollbar = Scrollbar(frame)
+    scrollbar.pack(side = RIGHT, fill = Y)
+    mylist = Listbox(frame, width = 50, height = 15, yscrollcommand = scrollbar.set )
+    scrollbar.configure(command = mylist.yview)
+    mylist.pack(fill = BOTH, side = BOTTOM)
 
-frame4 = Frame(window)
-frame4.pack(side = BOTTOM)
-label1 = Label(frame4, text = '4+ letter words: ')
-label1.pack(side = LEFT)
+    frame4 = Frame(window)
+    frame4.pack(side = BOTTOM)
+    label1 = Label(frame4, text = '4+ letter words: ')
+    label1.pack(side = LEFT)
 
-# button
-findWords = Button(window, text = 'Find Words', command = lambda: find(entry.get(), mylist, mylist2))
-findWords.pack(side = TOP)
-window.bind('<Return>', lambda event = None: findWords.invoke())
+    # button
+    findWords = Button(window, text = 'Find Words', command = lambda: find(entry.get(), mylist, mylist2))
+    findWords.pack(side = TOP)
+    window.bind('<Return>', lambda event = None: findWords.invoke())
 
-dWord = StringVar
-mylist.bind('<<ListboxSelect>>', lambda event = None: assignDelete(event, dWord))
-# mylist2.bind('<<ListboxSelect>>', lambda event = None: assignDelete2(event, dWord))
-deleteWord = Button(window, text = 'Remove Selected Word', command = lambda: delete(mylist))
-deleteWord.pack(side = BOTTOM)
-window.bind('<BackSpace>', lambda event = None: deleteWord.invoke())
+    dWord = StringVar
+    mylist.bind('<<ListboxSelect>>', lambda event = None: assignDelete(event, dWord))
+    deleteWord = Button(window, text = 'Remove Selected Word', command = lambda: delete(mylist))
+    deleteWord.pack(side = BOTTOM)
+    window.bind('<BackSpace>', lambda event = None: deleteWord.invoke())
 
-window.mainloop()
+    window.mainloop()
+
+if __name__ == "__main__":
+    main()
