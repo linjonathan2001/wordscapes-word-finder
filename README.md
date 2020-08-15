@@ -11,6 +11,11 @@ python3 run.py
 Enter letters into the ``Letters`` field and click ``Find Words``.
 To remove words from your local list, click on any outputted word and press ``Remove Selected Word`` or the delete key.
 
+The wordscapeswordcounter.py script can be used to calculate how many total valid words are in the wordscapes.txt file:
+```
+python3 wordscapeswordcounter.py
+```
+
 ## Old Scripts
 In the old scripts directory, there are previous versions of the wordscapes-word-finder. 
 
